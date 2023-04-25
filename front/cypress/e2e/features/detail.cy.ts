@@ -1,6 +1,7 @@
 describe('Detail spec', () => {
     it('Detail successfull', () => {
-        
+         //First we need to login 
+         cy.login("yoga@studio.com","test!1234")
 
         //Intercept detail request 
         cy.intercept('GET', '/api/session/1', {
@@ -28,9 +29,7 @@ describe('Detail spec', () => {
 
         
 
-        //First we need to login 
-        cy.login("yoga@studio.com","test!1234")
-
+       
         //Waiting for sessions page 
         cy.url().should('include', '/sessions')
 

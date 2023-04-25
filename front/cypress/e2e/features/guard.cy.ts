@@ -10,6 +10,18 @@ describe('Guard spec', () => {
       cy.url().should('include', '/login')
   
     })
+
+    // it('Unauth Guard successfull', () => {
+    //     //First we need to login 
+    //     cy.login("yoga@studio.com","test!1234")
+
+    //     //Attempt to check index page with login 
+    //     cy.visit('')
+    
+    //     //Guard redirecting (important : changed URL from '/rentals' to /sessions)
+    //     cy.url().should('include', '/sessions')
+    
+    //   })
   
     
   });
