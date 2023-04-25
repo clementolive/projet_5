@@ -42,5 +42,11 @@ describe('DetailComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should not participate', () => {
+    component.participate(); 
+    component.unParticipate(); 
+    expect(component.isParticipate).toBeFalsy();
+  });
 });
 

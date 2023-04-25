@@ -1,0 +1,7 @@
+import './features/login.cy'
+import './features/register.cy'
+import './components/me.cy'
+import './components/not-found.cy'
+import './features/detail.cy'
+import './features/form.cy'
+import './features/guard.cy'

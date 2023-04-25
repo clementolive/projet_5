@@ -43,6 +43,27 @@ describe('MeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should delete the account ', () => {
+    component.delete(); 
+    expect(component.user).toBeFalsy();
+    
+  });
+
+  it('should go back with window.history', () => {
+    let window_state = window.history.state;
+    if(window.history.length > 1){
+      component.back();
+      expect(window_state).not.toBe(window.history.state);
+    }else{
+      component.back(); 
+      expect(window_state).toBe(window.history.state);
+    }
+  });
+
+
+
+  
 });
 
 

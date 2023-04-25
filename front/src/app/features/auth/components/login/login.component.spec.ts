@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -11,6 +11,18 @@ import { expect } from '@jest/globals';
 import { SessionService } from 'src/app/services/session.service';
 
 import { LoginComponent } from './login.component';
+
+/**
+* @jest-environment jsdom
+*/
+
+// Ici j'importe DOM Test Library
+import {
+  getByTestId
+} from '@testing-library/dom'
+import { AuthService } from '../../services/auth.service';
+import { RegisterComponent } from '../register/register.component';
+
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -39,4 +51,9 @@ describe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+
+
+  
+
 });

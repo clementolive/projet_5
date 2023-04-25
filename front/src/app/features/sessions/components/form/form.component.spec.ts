@@ -56,4 +56,12 @@ describe('FormComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  
+  it('should make the init form', () => {
+    component.submit();
+    expect(component.sessionForm).toBeTruthy(); 
+    
+  });
+
 });
