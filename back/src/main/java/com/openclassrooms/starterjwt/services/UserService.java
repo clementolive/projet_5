@@ -15,6 +15,10 @@ public class UserService {
     public void delete(Long id) {
         this.userRepository.deleteById(id);
     }
+    //create user
+    //save in H2 DB
+    //delete
+    //verify delete works (no user )
 
     public User findById(Long id) {
         return this.userRepository.findById(id).orElse(null);

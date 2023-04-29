@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
@@ -41,6 +42,7 @@ public class UserController {
     }
 
     @DeleteMapping("{id}")
+
     public ResponseEntity<?> save(@PathVariable("id") String id) {
         try {
             User user = this.userService.findById(Long.valueOf(id));
