@@ -1,6 +1,5 @@
 package com.openclassrooms.starterjwt.controllers;
 
-
 import com.openclassrooms.starterjwt.dto.SessionDto;
 import com.openclassrooms.starterjwt.mapper.SessionMapper;
 import com.openclassrooms.starterjwt.models.Session;
@@ -8,7 +7,6 @@ import com.openclassrooms.starterjwt.services.SessionService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -59,7 +57,7 @@ public class SessionController {
         return ResponseEntity.ok().body(this.sessionMapper.toDto(session));
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable("id") String id, @Valid @RequestBody SessionDto sessionDto) {
         try {
             Session session = this.sessionService.update(Long.parseLong(id), this.sessionMapper.toEntity(sessionDto));
@@ -70,7 +68,7 @@ public class SessionController {
         }
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> save(@PathVariable("id") String id) {
         try {
             Session session = this.sessionService.getById(Long.valueOf(id));
