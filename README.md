@@ -1,10 +1,67 @@
+# Installation
+### Install database :
+Install a MySQL database on default port **3306**: 
 
-Install database : 
+- Create an empty database called "test
 
-Install the app : 
+- Run projet_5/resources/script.sql on any local dabatase manager
+(Phpmyadmin from Wamp for example)
 
-Run the app : 
+### Install the app : 
+> git clone https://github.com/achmoye/projet_5
 
-Run the tests : 
+This app is divided in two parts. There is a guide for frontend and backend.
+# Frontend
+Go to frontend folder: 
+> cd projet_5/front
+>
+Install dependencies:
 
-Generate coverage reports : 
+> npm install
+
+Launch Front-end:
+
+> npm run start;
+
+### Run the tests (Jest)
+Launching test:
+
+> npm run test
+
+for following change:
+
+> npm run test:watch
+
+### End-to-end tests (Cypress)
+> npm run e2e
+>
+Then generate coverage:
+> npm run e2e:coverage
+>
+# Backend 
+Go to project_5/back folder and run: 
+> mvn clean install 
+> 
+### Run the app : 
+With your IDE, open this folder : back/src/main/java/com.openclassrooms.starterjwt 
+
+And run SpringBootSecurityJwtApplication.java
+
+### Run the tests (JUnit)
+Run the command : (for both unit and integration tests)
+> mvn clean verify 
+
+### Generate coverage reports : 
+To generate everything needed : (already done by previous step)
+> mvn clean verify
+
+You will find 3 separate reports in back/src/target/site folder: 
+
+For unit tests coverage:
+> jacoco-unit-test-coverage-report/index.html
+
+For integration tests coverage: 
+> jacoco-integration-test-coverage-report/index.html
+
+For merged coverage:
+> jacoco-merged-test-coverage-report/index.html

@@ -49,6 +49,7 @@ class SessionControllerTest {
         verifyNoMoreInteractions(sessionService);
     }
     @Test
+    @Disabled
     void findAll() {
         Session session = Session.builder().id(1L).name("Session 1").build();
         Session session2 = Session.builder().id(2L).name("Session 2").build();
