@@ -84,7 +84,7 @@ public class SessionController {
         }
     }
 
-    @PostMapping("{id}/participate/{userId}")
+    @PostMapping("/{id}/participate/{userId}")
     public ResponseEntity<?> participate(@PathVariable("id") String id, @PathVariable("userId") String userId) {
         try {
             this.sessionService.participate(Long.parseLong(id), Long.parseLong(userId));
@@ -95,7 +95,7 @@ public class SessionController {
         }
     }
 
-    @DeleteMapping("{id}/participate/{userId}")
+    @DeleteMapping("/{id}/participate/{userId}")
     public ResponseEntity<?> noLongerParticipate(@PathVariable("id") String id, @PathVariable("userId") String userId) {
         try {
             this.sessionService.noLongerParticipate(Long.parseLong(id), Long.parseLong(userId));

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.openclassrooms.starterjwt.mapper.SessionMapper;
 import com.openclassrooms.starterjwt.models.Session;
 import com.openclassrooms.starterjwt.repository.SessionRepository;
+import com.openclassrooms.starterjwt.repository.UserRepository;
 import org.json.JSONObject;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -37,6 +38,9 @@ class SessionControllerIT {
     SessionMapper sessionMapper;
     @Resource
     private SessionRepository sessionRepository;
+
+    @Resource
+    private UserRepository userRepository;
     protected String mapToJson(Object obj) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.writeValueAsString(obj);
@@ -49,10 +53,11 @@ class SessionControllerIT {
 
     @AfterEach
     void tearDown() {
+        sessionRepository.deleteAll();
     }
 
     @Test
-    void create() throws Exception {
+    void create_and_update() throws Exception {
         /* Can't create a sessionDto or use a sessionMapper for testing, because of compatibility problems with LocalDateTime,
         even with the jackson-datatype-jsr310 dependency in pom.xml
          */
@@ -100,5 +105,37 @@ class SessionControllerIT {
                 .andExpect(jsonPath("$.[0].name").value("new session"));
 
         assert(this.sessionRepository.findAll().size() == 1);
+    }
+
+    @Test
+    void getById() throws Exception {
+        JSONObject sessionDtoJSON = new JSONObject();
+        sessionDtoJSON.put("name", "myname");
+        sessionDtoJSON.put("date", "2023-12-11T11:40:49Z");
+        sessionDtoJSON.put("teacher_id", 5);
+        sessionDtoJSON.put("description", "my description");
+
+        this.mockMvc.perform(post("/api/session").characterEncoding("utf-8")
+                        .contentType(APPLICATION_JSON).content(String.valueOf(sessionDtoJSON)))
+                .andDo(print())
+                .andExpect(status().isOk());
+
+        this.mockMvc.perform(get("/api/session/3").characterEncoding("utf-8")
+                        .contentType(APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void my_delete() throws Exception {
+        Session session = Session.builder()
+                .id(1L).name("Session 1").description("session desc").date(new Date()).name("new session")
+                .build();
+        sessionRepository.save(session);
+
+        this.mockMvc.perform(delete("/api/session/1").characterEncoding("utf-8")
+                        .contentType(APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk());
     }
 }
