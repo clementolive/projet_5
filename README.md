@@ -2,7 +2,7 @@
 ### Install database :
 Install a MySQL database on default port **3306**: 
 
-- Create an empty database called "test
+- Create an empty database called "test"
 
 - Run projet_5/resources/script.sql on any local dabatase manager
 (Phpmyadmin from Wamp for example)
@@ -18,13 +18,16 @@ Go to frontend folder:
 Install dependencies:
 
 > npm install
+
 > npm i --save-dev @types/jest
+
 > npm i @testing-library/user-event
+
 > npm install cypress -D
 
 Launch Front-end:
 
-> npm run start;
+> npm run start
 
 ### Run the tests (Jest)
 Launching test:
