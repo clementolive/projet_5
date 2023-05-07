@@ -24,7 +24,10 @@ describe('Login spec', () => {
     cy.get('input[formControlName=password]').type(`${"test!1234"}{enter}{enter}`)
     cy.url().should('include', '/sessions')
 
+    
+    cy.get('.link').contains("Logout").click();
+    cy.url().should('include', '');
+
   })
 
-  
 });
