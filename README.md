@@ -18,6 +18,9 @@ Go to frontend folder:
 Install dependencies:
 
 > npm install
+> npm i --save-dev @types/jest
+> npm i @testing-library/user-event
+> npm install cypress -D
 
 Launch Front-end:
 
@@ -32,12 +35,21 @@ for following change:
 
 > npm run test:watch
 
+Generating Jest coverage: 
+
+> npm test -- --coverage
+
+Check the coverage here :
+> /front/coverage/jest/lcov-report/index.html
+
 ### End-to-end tests (Cypress)
 > npm run e2e
 >
 Then generate coverage:
 > npm run e2e:coverage
->
+
+Check coverage here : 
+> /front/coverage/lcov-report/index.html
 # Backend 
 Go to project_5/back folder and run: 
 > mvn clean install 
