@@ -8,6 +8,10 @@ import { SessionService } from '../../../../services/session.service';
 
 import { DetailComponent } from './detail.component';
 
+import {
+  getByTestId, screen
+} from '@testing-library/dom'
+import userEvent from '@testing-library/user-event'
 
 describe('DetailComponent', () => {
   let component: DetailComponent;
@@ -39,11 +43,13 @@ describe('DetailComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  //Integration tests 
+  it('should create, participate, then dont', () => {
     expect(component).toBeTruthy();
-  });
 
-  it('should not participate', () => {
+    expect(screen.findByText("Participate")).toBeTruthy();
+    expect(screen.findByText("Do not participate")).toBeTruthy();
+
     component.participate(); 
     component.unParticipate(); 
     expect(component.isParticipate).toBeFalsy();

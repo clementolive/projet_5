@@ -7,6 +7,11 @@ import { SessionService } from 'src/app/services/session.service';
 
 import { ListComponent } from './list.component';
 
+import {
+  getByTestId, screen
+} from '@testing-library/dom'
+import userEvent from '@testing-library/user-event'
+
 describe('ListComponent', () => {
   let component: ListComponent;
   let fixture: ComponentFixture<ListComponent>;
@@ -30,7 +35,9 @@ describe('ListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create and check DOM', () => {
     expect(component).toBeTruthy();
+
+    expect(screen.findByText("Rentals available")).toBeTruthy();
   });
 });

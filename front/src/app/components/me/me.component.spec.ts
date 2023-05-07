@@ -1,3 +1,7 @@
+/**
+* @jest-environment jsdom
+*/
+
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatCardModule } from '@angular/material/card';
@@ -7,8 +11,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SessionService } from 'src/app/services/session.service';
 import { expect } from '@jest/globals';
-
 import { MeComponent } from './me.component';
+
+import {
+  getByTestId
+} from '@testing-library/dom'
 
 describe('MeComponent', () => {
   let component: MeComponent;
@@ -40,15 +47,6 @@ describe('MeComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should delete the account ', () => {
-    component.delete(); 
-    expect(component.user).toBeFalsy();
-    
-  });
 
   it('should go back with window.history', () => {
     let window_state = window.history.state;
@@ -59,6 +57,17 @@ describe('MeComponent', () => {
       component.back(); 
       expect(window_state).toBe(window.history.state);
     }
+  });
+
+  //Integration tests 
+  it('should create, check content, then delete ', () => {
+    expect(component).toBeTruthy();
+
+    const my_title = document.getElementsByTagName("h1");
+    expect(my_title[0].textContent).toContain("User information");
+
+    component.delete(); 
+    expect(component.user).toBeFalsy();
   });
 
 

@@ -3,6 +3,11 @@ import { expect } from '@jest/globals';
 
 import { NotFoundComponent } from './not-found.component';
 
+import {
+  getByTestId, screen
+} from '@testing-library/dom'
+import userEvent from '@testing-library/user-event'
+
 describe('NotFoundComponent', () => {
   let component: NotFoundComponent;
   let fixture: ComponentFixture<NotFoundComponent>;
@@ -18,7 +23,10 @@ describe('NotFoundComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  //Integration test (DOM)
+  it('should create and display Page not found !', () => {
     expect(component).toBeTruthy();
+
+    expect(screen.findByText("Page not found !")).toBeTruthy();
   });
 });

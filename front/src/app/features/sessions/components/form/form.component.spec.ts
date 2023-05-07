@@ -15,6 +15,11 @@ import { SessionApiService } from '../../services/session-api.service';
 
 import { FormComponent } from './form.component';
 
+import {
+  getByTestId, screen
+} from '@testing-library/dom'
+import userEvent from '@testing-library/user-event'
+
 describe('FormComponent', () => {
   let component: FormComponent;
   let fixture: ComponentFixture<FormComponent>;
@@ -57,11 +62,13 @@ describe('FormComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  
+  //Integration test (checking DOM) 
   it('should make the init form', () => {
     component.submit();
     expect(component.sessionForm).toBeTruthy(); 
     
+    expect(screen.findByText("Create session")).toBeTruthy();
+    expect(screen.findByText("Update session")).toBeTruthy();
   });
 
 });
